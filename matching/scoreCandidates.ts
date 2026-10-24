@@ -9,175 +9,133 @@ export interface Observation {
   reportedTime: string;
 }
 
-export interface ComponentScores {
-  geo: number;
-  time: number;
-  category: number;
-  text: number | null;
-}
-
 export interface MatchResult {
   candidateId: string;
   probability: number;
-  componentScores: ComponentScores;
+  componentScores: {
+    geo: number;
+    time: number;
+    category: number;
+    text: number | null;
+  };
   explanation: string;
   algorithmVersion: string;
 }
 
-export interface ModelFeatures {
-  geo: number;
-  time: number;
-  category: number;
-  text: number;
-}
-
-export interface PairScore {
-  distanceMiles: number;
-  gapMinutes: number;
-  componentScores: ComponentScores;
-  modelFeatures: ModelFeatures;
-  probability: number;
-}
-
 const EARTH_RADIUS_MILES = 3958.8;
+const stopwords = new Set(model.stopwords);
 
-const geoScaleMiles: Record<string, number> = model.geoScaleMiles;
-const timeScaleMinutes: Record<string, number> = model.timeScaleMinutes;
-const categoryCompat: Record<string, number> = model.categoryCompat;
-const stopwords = new Set<string>(model.stopwords);
+function milesApart(a: Observation, b: Observation) {
+  const lat1 = (a.lat * Math.PI) / 180;
+  const lat2 = (b.lat * Math.PI) / 180;
+  const dLat = lat2 - lat1;
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180;
 
-function toRadians(degrees: number): number {
-  return (degrees * Math.PI) / 180;
-}
-
-function haversineMiles(aLat: number, aLng: number, bLat: number, bLng: number): number {
-  const p1 = toRadians(aLat);
-  const p2 = toRadians(bLat);
-  const dp = p2 - p1;
-  const dl = toRadians(bLng - aLng);
-  const h = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
   return 2 * EARTH_RADIUS_MILES * Math.asin(Math.sqrt(h));
 }
 
-function parseTimeMs(value: string): number {
-  const normalized = value.trim().replace(" ", "T");
-  const hasZone = /(?:Z|[+-]\d{2}:?\d{2})$/.test(normalized);
-  const ms = Date.parse(hasZone ? normalized : `${normalized}Z`);
-  if (Number.isNaN(ms)) {
-    throw new Error(`Unparseable reportedTime: ${value}`);
-  }
+// Timestamps don't always carry a timezone. Read bare ones as UTC so both sides
+// of a pair get the same treatment - only the gap between them matters.
+function parseTime(stamp: string) {
+  const s = stamp.trim().replace(" ", "T");
+  const hasZone = /(Z|[+-]\d{2}:?\d{2})$/.test(s);
+  const ms = Date.parse(hasZone ? s : s + "Z");
+  if (Number.isNaN(ms)) throw new Error(`Bad reportedTime: ${stamp}`);
   return ms;
 }
 
-function scaleFor(scales: Record<string, number>, a: string, b: string, label: string): number {
-  const scaleA = scales[a];
-  const scaleB = scales[b];
-  if (scaleA === undefined || scaleB === undefined) {
-    throw new Error(`No ${label} scale for category ${scaleA === undefined ? a : b}`);
-  }
-  return Math.max(scaleA, scaleB);
+function minutesApart(a: Observation, b: Observation) {
+  return Math.abs(parseTime(a.reportedTime) - parseTime(b.reportedTime)) / 60000;
 }
 
-function tokenize(text: string): Set<string> {
-  const words = text.toLowerCase().match(/[a-z]+/g) ?? [];
-  return new Set(words.filter((word) => word.length > 2 && !stopwords.has(word)));
+function scaleFor(table: Record<string, number>, a: string, b: string) {
+  const first = table[a];
+  const second = table[b];
+  if (first === undefined) throw new Error(`Unknown category: ${a}`);
+  if (second === undefined) throw new Error(`Unknown category: ${b}`);
+  return Math.max(first, second);
 }
 
-function jaccard(a: Set<string>, b: Set<string>): number | null {
-  if (a.size === 0 || b.size === 0) {
-    return null;
-  }
+function words(text: string) {
+  const found = text.toLowerCase().match(/[a-z]+/g) ?? [];
+  return new Set(found.filter((w) => w.length > 2 && !stopwords.has(w)));
+}
+
+function textOverlap(a: string, b: string) {
+  const first = words(a);
+  const second = words(b);
+  if (first.size === 0 || second.size === 0) return null;
+
   let shared = 0;
-  for (const word of a) {
-    if (b.has(word)) {
-      shared += 1;
-    }
+  for (const word of first) {
+    if (second.has(word)) shared++;
   }
-  return shared / (a.size + b.size - shared);
+  return shared / (first.size + second.size - shared);
 }
 
-function categoryScore(a: string, b: string): number {
-  if (a === b) {
-    return 1;
-  }
-  return categoryCompat[`${a}|${b}`] ?? categoryCompat[`${b}|${a}`] ?? 0;
+function categoryMatch(a: string, b: string) {
+  if (a === b) return 1;
+  const compat: Record<string, number> = model.categoryCompat;
+  return compat[`${a}|${b}`] ?? compat[`${b}|${a}`] ?? 0;
 }
 
-function sigmoid(z: number): number {
-  return 1 / (1 + Math.exp(-z));
+function explain(minutes: number, miles: number, category: number, text: number | null) {
+  const mins = Math.round(minutes);
+  const unit = mins === 1 ? "minute" : "minutes";
+
+  let sameness = "different category";
+  if (category === 1) sameness = "same category";
+  else if (category > 0) sameness = "different but related category";
+
+  let wording = "no shared wording";
+  if (text === null) wording = "descriptions not compared";
+  else if (text > 0) wording = "similar descriptions";
+
+  return `Reported ${mins} ${unit} apart, about ${miles.toFixed(2)} miles apart, ${sameness}, ${wording}.`;
 }
 
-function probabilityOf(features: ModelFeatures): number {
-  let z = model.bias;
-  model.featureOrder.forEach((name, index) => {
-    const value = features[name as keyof ModelFeatures];
-    if (value === undefined) {
-      throw new Error(`weights.json featureOrder names an unknown feature: ${name}`);
-    }
-    z += model.weights[index] * value;
+// Exported so the parity test can reach pairs that scoreCandidates filters out.
+export function scorePair(a: Observation, b: Observation) {
+  const miles = milesApart(a, b);
+  const minutes = minutesApart(a, b);
+  const overlap = textOverlap(a.text, b.text);
+
+  const geo = Math.exp(-miles / scaleFor(model.geoScaleMiles, a.category, b.category));
+  const time = Math.exp(-minutes / scaleFor(model.timeScaleMinutes, a.category, b.category));
+  const category = categoryMatch(a.category, b.category);
+  const text = overlap ?? model.textMissingValue;
+
+  const modelFeatures: Record<string, number> = { geo, time, category, text };
+  let sum = model.bias;
+  model.featureOrder.forEach((name, i) => {
+    sum += model.weights[i] * modelFeatures[name];
   });
-  return sigmoid(z);
-}
-
-function describe(score: PairScore): string {
-  const minutes = Math.round(score.gapMinutes);
-  const { category, text } = score.componentScores;
-
-  const categoryPhrase =
-    category === 1 ? "same category" : category > 0 ? "different but related category" : "different category";
-  const textPhrase =
-    text === null ? "descriptions not compared" : text > 0 ? "similar descriptions" : "no shared wording";
-
-  return (
-    [
-      `Reported ${minutes} ${minutes === 1 ? "minute" : "minutes"} apart`,
-      `about ${score.distanceMiles.toFixed(2)} miles apart`,
-      categoryPhrase,
-      textPhrase,
-    ].join(", ") + "."
-  );
-}
-
-export function scorePair(a: Observation, b: Observation): PairScore {
-  const distanceMiles = haversineMiles(a.lat, a.lng, b.lat, b.lng);
-  const gapMinutes = Math.abs(parseTimeMs(a.reportedTime) - parseTimeMs(b.reportedTime)) / 60000;
-
-  const geoScale = scaleFor(geoScaleMiles, a.category, b.category, "distance");
-  const timeScale = scaleFor(timeScaleMinutes, a.category, b.category, "time");
-  const text = jaccard(tokenize(a.text), tokenize(b.text));
-
-  const componentScores: ComponentScores = {
-    geo: Math.exp(-distanceMiles / geoScale),
-    time: Math.exp(-gapMinutes / timeScale),
-    category: categoryScore(a.category, b.category),
-    text,
-  };
-  const modelFeatures: ModelFeatures = {
-    ...componentScores,
-    text: text ?? model.textMissingValue,
-  };
 
   return {
-    distanceMiles,
-    gapMinutes,
-    componentScores,
+    miles,
+    minutes,
     modelFeatures,
-    probability: probabilityOf(modelFeatures),
+    componentScores: { geo, time, category, text: overlap },
+    probability: 1 / (1 + Math.exp(-sum)),
   };
 }
 
 export function scoreCandidates(newObs: Observation, candidates: Observation[]): MatchResult[] {
-  return candidates
-    .map((candidate) => {
-      const score = scorePair(newObs, candidate);
-      return {
-        candidateId: candidate.id,
-        probability: score.probability,
-        componentScores: score.componentScores,
-        explanation: describe(score),
-        algorithmVersion: model.algorithmVersion,
-      };
-    })
-    .filter((result) => result.probability >= model.cutoff)
-    .sort((a, b) => b.probability - a.probability);
+  const matches: MatchResult[] = [];
+
+  for (const candidate of candidates) {
+    const score = scorePair(newObs, candidate);
+    if (score.probability < model.cutoff) continue;
+
+    matches.push({
+      candidateId: candidate.id,
+      probability: score.probability,
+      componentScores: score.componentScores,
+      explanation: explain(score.minutes, score.miles, score.componentScores.category, score.componentScores.text),
+      algorithmVersion: model.algorithmVersion,
+    });
+  }
+
+  return matches.sort((a, b) => b.probability - a.probability);
 }
