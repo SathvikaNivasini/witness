@@ -1,0 +1,562 @@
+[
+  {
+    "pairId": "P0017",
+    "scenarioType": "neg_close_diff_theme",
+    "label": 0,
+    "a": {
+      "id": "o0024",
+      "category": "Runoff/Water",
+      "text": "oil slick in the drainage ditch",
+      "lat": 33.021063,
+      "lng": -96.705493,
+      "reportedTime": "2026-10-09 20:20"
+    },
+    "b": {
+      "id": "o0025",
+      "category": "Runoff/Water",
+      "text": "cloudy brown runoff from the site",
+      "lat": 33.021863,
+      "lng": -96.701385,
+      "reportedTime": "2026-10-09 20:52"
+    },
+    "features": {
+      "geo": 0.44289922880783633,
+      "time": 0.5866462195100318,
+      "category": 1.0,
+      "text": 0.0
+    },
+    "probability": 0.43736728314004164
+  },
+  {
+    "pairId": "P0021",
+    "scenarioType": "neg_close_same_theme_gap",
+    "label": 0,
+    "a": {
+      "id": "o0032",
+      "category": "Runoff/Water",
+      "text": "muddy brown water in the ditch",
+      "lat": 32.999323,
+      "lng": -96.702187,
+      "reportedTime": "2026-10-11 07:17"
+    },
+    "b": {
+      "id": "o0033",
+      "category": "Runoff/Water",
+      "text": "brown muddy water in the creek",
+      "lat": 32.999729,
+      "lng": -96.697241,
+      "reportedTime": "2026-10-11 10:52"
+    },
+    "features": {
+      "geo": 0.3829211424145636,
+      "time": 0.02778293395412425,
+      "category": 1.0,
+      "text": 0.6
+    },
+    "probability": 0.0755404821127918
+  },
+  {
+    "pairId": "P0020",
+    "scenarioType": "neg_diff_category",
+    "label": 0,
+    "a": {
+      "id": "o0030",
+      "category": "Odor",
+      "text": "bad sewer smell on the trail",
+      "lat": 32.890597,
+      "lng": -96.656815,
+      "reportedTime": "2026-09-29 19:52"
+    },
+    "b": {
+      "id": "o0031",
+      "category": "Dust/Particles",
+      "text": "light ash dust on everything outside",
+      "lat": 32.890885,
+      "lng": -96.657073,
+      "reportedTime": "2026-09-29 19:58"
+    },
+    "features": {
+      "geo": 0.9514185077162748,
+      "time": 0.8187307530779818,
+      "category": 0.0,
+      "text": 0.0
+    },
+    "probability": 0.3876023970414947
+  },
+  {
+    "pairId": "P0002",
+    "scenarioType": "neg_far",
+    "label": 0,
+    "a": {
+      "id": "o0003",
+      "category": "Dust/Particles",
+      "text": "falling ash covering the patio",
+      "lat": 32.789139,
+      "lng": -96.772105,
+      "reportedTime": "2026-09-01 12:16"
+    },
+    "b": {
+      "id": "o0004",
+      "category": "Dust/Particles",
+      "text": "light ash dust on everything outside",
+      "lat": 32.718852,
+      "lng": -96.728216,
+      "reportedTime": "2026-09-01 12:22"
+    },
+    "features": {
+      "geo": 1.7198908827924295e-05,
+      "time": 0.8187307530779818,
+      "category": 1.0,
+      "text": 0.14285714285714285
+    },
+    "probability": 0.37458513884262296
+  },
+  {
+    "pairId": "P0018",
+    "scenarioType": "neg_overnight",
+    "label": 0,
+    "a": {
+      "id": "o0026",
+      "category": "Odor",
+      "text": "smells like gas near the park",
+      "lat": 33.010469,
+      "lng": -96.711197,
+      "reportedTime": "2026-09-22 22:48"
+    },
+    "b": {
+      "id": "o0027",
+      "category": "Odor",
+      "text": "smells like gas near the park",
+      "lat": 33.01047,
+      "lng": -96.711144,
+      "reportedTime": "2026-09-23 06:13"
+    },
+    "features": {
+      "geo": 0.9938756041566501,
+      "time": 3.6138089164459586e-07,
+      "category": 1.0,
+      "text": 1.0
+    },
+    "probability": 0.2928563340426545
+  },
+  {
+    "pairId": "P0019",
+    "scenarioType": "neg_same_place_hours_apart",
+    "label": 0,
+    "a": {
+      "id": "o0028",
+      "category": "Odor",
+      "text": "strong burning plastic smell",
+      "lat": 32.910865,
+      "lng": -96.644797,
+      "reportedTime": "2026-10-02 12:15"
+    },
+    "b": {
+      "id": "o0029",
+      "category": "Odor",
+      "text": "chemical burning odor, hard to breathe",
+      "lat": 32.911047,
+      "lng": -96.645997,
+      "reportedTime": "2026-10-02 21:27"
+    },
+    "features": {
+      "geo": 0.8680838136817527,
+      "time": 1.0208960723597638e-08,
+      "category": 1.0,
+      "text": 0.125
+    },
+    "probability": 0.20003124240715583
+  },
+  {
+    "pairId": "P0001",
+    "scenarioType": "same_cross_category",
+    "label": 1,
+    "a": {
+      "id": "o0001",
+      "category": "Smoke/Haze",
+      "text": "black smoke rising from the west",
+      "lat": 32.959705,
+      "lng": -97.005948,
+      "reportedTime": "2026-09-29 04:46"
+    },
+    "b": {
+      "id": "o0002",
+      "category": "Odor",
+      "text": "sulfur smell, like rotten eggs",
+      "lat": 32.957233,
+      "lng": -97.007563,
+      "reportedTime": "2026-09-29 04:47"
+    },
+    "features": {
+      "geo": 0.8230158368296915,
+      "time": 0.9780228724846005,
+      "category": 0.5,
+      "text": 0.0
+    },
+    "probability": 0.7449143072627895
+  },
+  {
+    "pairId": "P0008",
+    "scenarioType": "same_loose",
+    "label": 1,
+    "a": {
+      "id": "o0012",
+      "category": "Runoff/Water",
+      "text": "",
+      "lat": 32.911757,
+      "lng": -96.632004,
+      "reportedTime": "2026-09-14 22:47"
+    },
+    "b": {
+      "id": "o0013",
+      "category": "Runoff/Water",
+      "text": "cloudy brown runoff from the site",
+      "lat": 32.912776,
+      "lng": -96.636207,
+      "reportedTime": "2026-09-14 22:22"
+    },
+    "features": {
+      "geo": 0.4291895665220528,
+      "time": 0.6592406302004438,
+      "category": 1.0,
+      "text": 0.5
+    },
+    "probability": 0.5225393056665333
+  },
+  {
+    "pairId": "P0047",
+    "scenarioType": "same_missing_text",
+    "label": 1,
+    "a": {
+      "id": "o0078",
+      "category": "Odor",
+      "text": "",
+      "lat": 32.935972,
+      "lng": -97.080459,
+      "reportedTime": "2026-09-10 02:31"
+    },
+    "b": {
+      "id": "o0079",
+      "category": "Odor",
+      "text": "",
+      "lat": 32.935647,
+      "lng": -97.0817,
+      "reportedTime": "2026-09-10 02:44"
+    },
+    "features": {
+      "geo": 0.860042323924698,
+      "time": 0.6483443410015097,
+      "category": 1.0,
+      "text": 0.5
+    },
+    "probability": 0.7714325278979426
+  },
+  {
+    "pairId": "P0009",
+    "scenarioType": "same_repeat_account",
+    "label": 1,
+    "a": {
+      "id": "o0014",
+      "category": "Runoff/Water",
+      "text": "white foam in the creek",
+      "lat": 32.945996,
+      "lng": -97.076879,
+      "reportedTime": "2026-09-05 23:00"
+    },
+    "b": {
+      "id": "o0015",
+      "category": "Runoff/Water",
+      "text": "foam building up in the stream",
+      "lat": 32.945932,
+      "lng": -97.076632,
+      "reportedTime": "2026-09-05 23:03"
+    },
+    "features": {
+      "geo": 0.9512647635252699,
+      "time": 0.951229424500714,
+      "category": 1.0,
+      "text": 0.2
+    },
+    "probability": 0.9309466744922121
+  },
+  {
+    "pairId": "P0003",
+    "scenarioType": "same_tight",
+    "label": 1,
+    "a": {
+      "id": "o0005",
+      "category": "Smoke/Haze",
+      "text": "",
+      "lat": 32.930955,
+      "lng": -96.630065,
+      "reportedTime": "2026-09-21 01:19"
+    },
+    "b": {
+      "id": "o0006",
+      "category": "Smoke/Haze",
+      "text": "woodsmoke haze hanging low",
+      "lat": 32.931055,
+      "lng": -96.630123,
+      "reportedTime": "2026-09-21 01:10"
+    },
+    "features": {
+      "geo": 0.9923448243009025,
+      "time": 0.8187307530779818,
+      "category": 1.0,
+      "text": 0.5
+    },
+    "probability": 0.9043675749010743
+  },
+  {
+    "pairId": "P0024",
+    "scenarioType": "neg_close_diff_theme",
+    "label": 0,
+    "a": {
+      "id": "o0038",
+      "category": "Smoke/Haze",
+      "text": "black plume of smoke nearby",
+      "lat": 32.801327,
+      "lng": -96.800566,
+      "reportedTime": "2026-10-05 00:58"
+    },
+    "b": {
+      "id": "o0039",
+      "category": "Smoke/Haze",
+      "text": "smoke drifting across the road",
+      "lat": 32.799737,
+      "lng": -96.799656,
+      "reportedTime": "2026-10-05 01:09"
+    },
+    "features": {
+      "geo": 0.8852269585640655,
+      "time": 0.7831394949065555,
+      "category": 1.0,
+      "text": 0.14285714285714285
+    },
+    "probability": 0.8518540213937474
+  },
+  {
+    "pairId": "P0086",
+    "scenarioType": "neg_close_same_theme_gap",
+    "label": 0,
+    "a": {
+      "id": "o0144",
+      "category": "Odor",
+      "text": "acrid burning smell near the street",
+      "lat": 33.026157,
+      "lng": -96.699161,
+      "reportedTime": "2026-09-24 07:01"
+    },
+    "b": {
+      "id": "o0145",
+      "category": "Odor",
+      "text": "acrid burning smell near the street",
+      "lat": 33.026801,
+      "lng": -96.702045,
+      "reportedTime": "2026-09-24 09:30"
+    },
+    "features": {
+      "geo": 0.7076631885041986,
+      "time": 0.006966330477467914,
+      "category": 1.0,
+      "text": 1.0
+    },
+    "probability": 0.16372751098739127
+  },
+  {
+    "pairId": "P0030",
+    "scenarioType": "neg_diff_category",
+    "label": 0,
+    "a": {
+      "id": "o0047",
+      "category": "Smoke/Haze",
+      "text": "smoky haze, like a brush fire",
+      "lat": 32.936905,
+      "lng": -97.086108,
+      "reportedTime": "2026-10-05 15:29"
+    },
+    "b": {
+      "id": "o0048",
+      "category": "Dust/Particles",
+      "text": "gritty construction dust on my car",
+      "lat": 32.936697,
+      "lng": -97.085599,
+      "reportedTime": "2026-10-05 15:36"
+    },
+    "features": {
+      "geo": 0.9677039278783235,
+      "time": 0.8559395234122652,
+      "category": 0.0,
+      "text": 0.0
+    },
+    "probability": 0.43373875729540673
+  },
+  {
+    "pairId": "P0004",
+    "scenarioType": "neg_far",
+    "label": 0,
+    "a": {
+      "id": "o0007",
+      "category": "Noise",
+      "text": "piercing alarm going off for a while",
+      "lat": 32.760433,
+      "lng": -96.805404,
+      "reportedTime": "2026-09-21 08:13"
+    },
+    "b": {
+      "id": "o0008",
+      "category": "Noise",
+      "text": "repeating siren-like alarm sound",
+      "lat": 32.751459,
+      "lng": -96.697558,
+      "reportedTime": "2026-09-21 08:31"
+    },
+    "features": {
+      "geo": 7.653595665559106e-10,
+      "time": 0.30119421191220214,
+      "category": 1.0,
+      "text": 0.125
+    },
+    "probability": 0.07209131542217541
+  },
+  {
+    "pairId": "P0044",
+    "scenarioType": "neg_overnight",
+    "label": 0,
+    "a": {
+      "id": "o0072",
+      "category": "Smoke/Haze",
+      "text": "hazy grey smoke over the park",
+      "lat": 32.770154,
+      "lng": -96.768104,
+      "reportedTime": "2026-09-18 22:30"
+    },
+    "b": {
+      "id": "o0073",
+      "category": "Smoke/Haze",
+      "text": "hazy grey smoke over the park",
+      "lat": 32.769876,
+      "lng": -96.768342,
+      "reportedTime": "2026-09-19 06:44"
+    },
+    "features": {
+      "geo": 0.9766104581501235,
+      "time": 1.707700429113291e-05,
+      "category": 1.0,
+      "text": 1.0
+    },
+    "probability": 0.2832625839362078
+  },
+  {
+    "pairId": "P0023",
+    "scenarioType": "neg_same_place_hours_apart",
+    "label": 0,
+    "a": {
+      "id": "o0036",
+      "category": "Runoff/Water",
+      "text": "oil slick in the drainage ditch",
+      "lat": 32.775299,
+      "lng": -96.81419,
+      "reportedTime": "2026-10-09 07:31"
+    },
+    "b": {
+      "id": "o0037",
+      "category": "Runoff/Water",
+      "text": "oil slick in the drainage ditch",
+      "lat": 32.775959,
+      "lng": -96.814045,
+      "reportedTime": "2026-10-09 13:14"
+    },
+    "features": {
+      "geo": 0.8567761281205094,
+      "time": 0.003290661512896186,
+      "category": 1.0,
+      "text": 1.0
+    },
+    "probability": 0.2243296376511605
+  },
+  {
+    "pairId": "P0016",
+    "scenarioType": "same_cross_category",
+    "label": 1,
+    "a": {
+      "id": "o0022",
+      "category": "Odor",
+      "text": "strong gas smell by the road",
+      "lat": 32.916326,
+      "lng": -97.099388,
+      "reportedTime": "2026-09-08 23:59"
+    },
+    "b": {
+      "id": "o0023",
+      "category": "Smoke/Haze",
+      "text": "smells like woodsmoke and visible haze",
+      "lat": 32.917597,
+      "lng": -97.099571,
+      "reportedTime": "2026-09-09 00:00"
+    },
+    "features": {
+      "geo": 0.9153418070608988,
+      "time": 0.9780228724846005,
+      "category": 0.5,
+      "text": 0.0
+    },
+    "probability": 0.7895472298896301
+  },
+  {
+    "pairId": "P0015",
+    "scenarioType": "same_loose",
+    "label": 1,
+    "a": {
+      "id": "o0020",
+      "category": "Noise",
+      "text": "loud alarm sounding repeatedly",
+      "lat": 32.920918,
+      "lng": -96.636813,
+      "reportedTime": "2026-09-17 06:20"
+    },
+    "b": {
+      "id": "o0021",
+      "category": "Noise",
+      "text": "loud alarm sounding repeatedly",
+      "lat": 32.919743,
+      "lng": -96.638095,
+      "reportedTime": "2026-09-17 05:52"
+    },
+    "features": {
+      "geo": 0.6928327624979239,
+      "time": 0.1546382645492548,
+      "category": 1.0,
+      "text": 1.0
+    },
+    "probability": 0.2517716655068992
+  },
+  {
+    "pairId": "P0056",
+    "scenarioType": "same_missing_text",
+    "label": 1,
+    "a": {
+      "id": "o0093",
+      "category": "Noise",
+      "text": "",
+      "lat": 32.960827,
+      "lng": -97.009575,
+      "reportedTime": "2026-09-24 21:49"
+    },
+    "b": {
+      "id": "o0094",
+      "category": "Noise",
+      "text": "repeated banging from the plant",
+      "lat": 32.959717,
+      "lng": -97.00907,
+      "reportedTime": "2026-09-24 22:00"
+    },
+    "features": {
+      "geo": 0.7606049992444774,
+      "time": 0.4803053010897994,
+      "category": 1.0,
+      "text": 0.5
+    },
+    "probability": 0.5706590008074086
+  }
+]
