@@ -1,0 +1,9 @@
+# Home page illustration
+
+Asset: `public/images/neighborhood-observation.webp` (1200 × 900).
+
+Created with the built-in image generation tool, then encoded as WebP for the website. This is an illustrative park scene, not a photograph of a documented event or a geographic map. The original abstract map drawing was removed from the welcome component.
+
+## Generation prompt
+
+Use case: illustration-story. Asset type: a finished editorial illustration for the hero of Witness, a calm neighborhood environmental field journal website. Primary request: replace a confusing abstract map with a clearly understandable, beautiful scene of noticing your surroundings and making a note. Scene: a peaceful creekside neighborhood park inspired by Dallas, gentle grassy banks, a few broad leafy trees, blue-green water and a simple walking path. Subject: one person, full body visible, pausing on the path beside the water and looking at a smartphone held naturally in their hands to record an observation. Person should be a clear readable part of the composition even at small website size, in a muted terracotta overshirt and dark trousers. Style: sophisticated contemporary editorial gouache illustration with soft paper grain, simple confident shapes, natural proportions, restrained details and warm sunlight. Warm ivory sky, sage and forest green foliage, muted blue water, subtle ochre grass; match a warm ivory and dark forest green website. Composition: landscape 4:3, balanced single scene, no separate panels, full bleed, generous quiet sky, focal person in middle foreground and creek visible. Calm, observant, welcoming mood. No text, letters, labels, logos, borders, map pins, topographic lines, charts, dotted routes, interface elements, or watermarks. This is an evocative illustration, not a geographic map or a depiction of a documented incident. Render as a polished image asset.

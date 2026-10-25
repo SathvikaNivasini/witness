@@ -476,37 +476,25 @@ main {
   color: var(--muted-text);
   margin-top: 10px;
 }
-.field-note {
-  background: #e7ecdf;
-  border: 1px solid #d5ddcc;
-  border-radius: 4px;
+.welcome-illustration {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
   color: var(--forest);
-  margin-top: 15px;
+  margin: 0;
   overflow: hidden;
 }
-.field-note-heading {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 19px;
-  padding: 14px 0 11px;
-  border-bottom: 1px solid #cbd5c3;
-  font-size: 8px;
-  letter-spacing: 1.7px;
-  color: #566b4b;
-}
-.field-sketch {
+.welcome-illustration-image {
   width: 100%;
   height: auto;
   display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
-.field-note-caption {
-  padding: 13px 18px 17px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+.welcome-illustration figcaption {
+  padding: 14px 18px 16px;
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: -0.2px;
 }
 .home-details {
@@ -2276,8 +2264,12 @@ textarea.input {
     line-height: 1.9;
     max-width: 430px;
   }
-  .field-note {
-    display: none;
+  .welcome-illustration {
+    margin-top: 28px;
+  }
+  .welcome-illustration figcaption {
+    padding: 12px 15px 14px;
+    font-size: 14px;
   }
   .record-button {
     margin-top: 22px;
