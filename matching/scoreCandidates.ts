@@ -1,4 +1,4 @@
-import model from "./weights.json";
+import model from "./weights.json" with { type: "json" };
 
 export interface Observation {
   id: string;
