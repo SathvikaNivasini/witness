@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
+    root: ".", // <--- Just add this line right here!
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],

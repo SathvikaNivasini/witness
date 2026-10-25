@@ -1,0 +1,61 @@
+{
+  "algorithmVersion": "lr-v1-synthetic",
+  "dataNote": "Trained on SYNTHETIC labeled pairs only; not validated on real reports.",
+  "featureOrder": [
+    "geo",
+    "time",
+    "category",
+    "text"
+  ],
+  "weights": [
+    2.713524120967585,
+    3.9398691065784432,
+    2.4998099581196462,
+    0.18652225971492012
+  ],
+  "bias": -6.264790755765355,
+  "cutoff": 0.5499999999999999,
+  "geoScaleMiles": {
+    "Odor": 0.5,
+    "Smoke/Haze": 1.0,
+    "Runoff/Water": 0.3,
+    "Dust/Particles": 0.5,
+    "Noise": 0.3
+  },
+  "timeScaleMinutes": {
+    "Odor": 30,
+    "Smoke/Haze": 45,
+    "Runoff/Water": 60,
+    "Dust/Particles": 30,
+    "Noise": 15
+  },
+  "categoryCompat": {
+    "Odor|Smoke/Haze": 0.5
+  },
+  "textMissingValue": 0.5,
+  "stopwords": [
+    "a",
+    "again",
+    "an",
+    "and",
+    "at",
+    "by",
+    "for",
+    "from",
+    "in",
+    "is",
+    "it",
+    "like",
+    "my",
+    "near",
+    "of",
+    "on",
+    "outside",
+    "over",
+    "that",
+    "the",
+    "this",
+    "to",
+    "with"
+  ]
+}
